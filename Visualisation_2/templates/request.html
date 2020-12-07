@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Requète</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <form action="graph" method="post" name="request">
+
+        <select name="TableSelect" onchange="TableSelectChange()">
+            <option value="0">Auteur</option>
+            <option value="1">Publication</option>
+            <option value="2">Venue</option>
+            <option value="3">Keyword</option>
+        </select><br/>
+
+        <div id="singleSelector">
+            Chercher par : 
+            <input value="0" name="NameRadio" type="radio"> Id
+            <input value="1" name="NameRadio" type="radio" checked> Nom
+            <input name="SingleSelector" type="text">
+        </div><br/><br/>
+        
+        <input name="AutorCheck" type="checkbox">Auteur<br/>
+        <input name="PublicationCheck" type="checkbox">Publication<br/>
+        <input name="KeywordCheck" type="checkbox">Keyword<br/>
+        
+        <div id="yearSelector" hidden>
+            <input name="YearCheck" type="checkbox" onclick="OnYearChecked()">
+            <span>Année de </span>
+            <input name="MinYearInput" type="number" min="1900" max="2020" step="1" value="1900" disabled> à 
+            <input name="MaxYearInput" type="number" min="1900" max="2020" step="1" value="2020" disabled>
+        </div><br/>
+
+        <br/>
+        <div id="maxSelector">
+            <input name="MaxNbCheck" type="checkbox" checked>
+            <span>Max nb Résultats :</span>
+            <input name="MaxNbInput" type="number" min="1" max="500" step="1" value="100"> Max : 500
+        </div><br/>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function TableSelectChange(){
+
+            document.getElementById("yearSelector").hidden = true;
+
+            switch(document.forms.request.TableSelect.value){
+                case "0":
+                    
+                break;
+                case "1":
+                    document.getElementById("yearSelector").hidden = false;
+                break;
+                case "2":
+
+                break;
+                case "3":
+
+                break;
+
+            }
+        }
+
+        function OnYearChecked(){
+            if(document.forms.request.YearCheck.checked){
+                document.forms.request.MinYearInput.disabled = false;
+                document.forms.request.MaxYearInput.disabled = false;
+            }else{
+                document.forms.request.MinYearInput.disabled = true;
+                document.forms.request.MaxYearInput.disabled = true;
+            }
+        }
+    </script>
+</body>
+
+</html>
